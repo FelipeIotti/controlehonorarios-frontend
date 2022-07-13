@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router} from 'react-router-dom';
+
+import { ChakraProvider } from '@chakra-ui/react';
+import {theme} from './styles/theme';
+
+
+import { SideBarDrawerProvider } from './contexts/SidebarDrawerContext';
+
+import { Home } from './pages';
+import { createContext, useState } from 'react';
+
+interface loginProps {
+  email: string;
+  password: string;
+}
+
+interface AuthUserProps {
+  isAuthenticated: boolean;
+  setIsAuthenticated: (value:boolean) => void;
+  userAuthenticate: loginProps;
+}
+export const AuthUser = createContext({} as AuthUserProps);
 
 function App() {
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const userAuthenticate = {
+    email: "financeiro@zagoadvogados.com.br",
+    password: "Alexandra123"
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme} >
+      <SideBarDrawerProvider>
+
+      <AuthUser.Provider value={{isAuthenticated, userAuthenticate,setIsAuthenticated}} >
+        <Router>
+          {/* <AuthPage/> */}
+            <Home/>
+          
+        </Router>
+        </AuthUser.Provider> 
+      </SideBarDrawerProvider>
+    </ChakraProvider>
   );
 }
 
