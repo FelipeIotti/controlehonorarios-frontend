@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Switch } from 'react-router-dom';
 import { AuthUser } from '../App';
 import { Home } from '../pages';

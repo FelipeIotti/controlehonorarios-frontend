@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import  { useContext } from 'react';
 import { Flex,Stack, Button } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -21,7 +21,7 @@ const signInFormSchema = yup.object().shape({
 export function AuthPage(){
   const {register, handleSubmit, formState, formState: { errors }} = useForm<SignInFormData>({resolver: yupResolver(signInFormSchema),});
   const history = useHistory();
-  const {userAuthenticate,isAuthenticated,setIsAuthenticated} = useContext(AuthUser);
+  const {userAuthenticate,setIsAuthenticated} = useContext(AuthUser);
 
 
   const handleSignIn:SubmitHandler<SignInFormData> =(value)=>{

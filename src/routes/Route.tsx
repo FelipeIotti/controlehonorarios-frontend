@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { RouteProps as ReactDOMRouterProps, Route as ReactDOMRoute,Redirect} from 'react-router-dom';
-import { AuthUser } from '../App';
+import React from 'react';
+import { RouteProps as ReactDOMRouterProps, Route as ReactDOMRoute,} from 'react-router-dom';
 
 interface RouteProps extends ReactDOMRouterProps {
   isPrivate?: boolean;
