@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex,FormControl,Select,FormLabel} from "@chakra-ui/react"
+import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex,} from "@chakra-ui/react"
 import { IClientsDTO } from '../../../../dtos/IClientsDTO';
 import api from "../../../../services/api";
 import {Link} from 'react-router-dom';
@@ -9,17 +9,6 @@ import { RiAddLine, RiCloseLine, RiPencilLine } from "react-icons/ri";
 export function ListClients(){
   const [clients,setClients] = useState<IClientsDTO[]>([]);
 
-  function statusColor (value: string){
-    if(value === 'Concluído'){
-      return 'green';
-    }
-    else if(value === 'Andamento'){
-      return 'yellow';
-    }
-    else if(value === 'Parado'){
-      return 'red';
-    }
-  }
 
   async function handleDelete(value: string){
     await api.delete('/clients/'+value)

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import Chart from "react-apexcharts"
@@ -7,7 +7,6 @@ import { IGroupActionDTO } from '../../../dtos/IGroupActionDTO';
 import { ILawyersDTO } from '../../../dtos/ILawyersDTO';
 import { IClientsDTO } from '../../../dtos/IClientsDTO';
 import { IFeesDTO } from '../../../dtos/IFeesDTO';
-import { AuthUser } from '../../../App';
 
 
 interface GeneralProps {

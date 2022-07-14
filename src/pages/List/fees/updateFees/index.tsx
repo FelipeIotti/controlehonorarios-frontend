@@ -1,8 +1,5 @@
 import React from 'react';
-import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack,FormControl,Select,FormLabel,Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,CloseButton} from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack,FormControl,Select} from "@chakra-ui/react";
 import {Input} from '../../../../components/Form/Input';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -36,10 +33,8 @@ export function UpdateFees(){
   const [selectLawyers, setSelectLawyers] = useState('');
   const [selectStatus, setSelectStatus] = useState('');
 
-  const [companyId, setCompanyId] =useState('');
   const {id} = useParams<updateId>();
   
-  const [error,setError] = useState<any>();
   const history = useHistory();
 
   useEffect( () => {
