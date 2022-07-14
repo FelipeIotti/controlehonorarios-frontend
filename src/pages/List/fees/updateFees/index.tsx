@@ -48,18 +48,30 @@ export function UpdateFees(){
     clients.filter((client)=>{
       if(client.name===selectClients){
         feesInput.clients=client.name;
+        return true;
+      }
+      else{
+        return false;
       }
     });
 
     groupAction.filter((groupAction)=>{
       if(groupAction.name===selectGroupAction){
         feesInput.group_action=groupAction.name;
+        return true;
+      }
+      else{
+        return false;
       }
     });
 
     lawyers.filter((lawyer)=>{
       if(lawyer.name===selectLawyers){
         feesInput.lawyers=lawyer.name;
+        return true;
+      }
+      else{
+        return false;
       }
     });
 

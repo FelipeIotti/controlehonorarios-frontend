@@ -56,6 +56,9 @@ export function IndividualGeneral(){
       if(generaL.data.name === event){
         return generaL;
       }
+      else{
+        return false;
+      }
     })[0];
 
     setSelectedGeneral(selectGeneral);
@@ -64,6 +67,9 @@ export function IndividualGeneral(){
       if(generaL.data.name === event){
         return generaL;
       }
+      else{
+        return false;
+      }
     })[0];
 
     setSelectedGeneralQuantity(selectGeneralQuantity);
@@ -71,6 +77,9 @@ export function IndividualGeneral(){
     const selectGeneralStatus = generalStatus.filter(generaL=> {
       if(generaL.data.name === event){
         return generaL
+      }
+      else{
+        return false;
       }
     })[0];
 

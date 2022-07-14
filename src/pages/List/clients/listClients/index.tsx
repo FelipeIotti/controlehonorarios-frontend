@@ -11,7 +11,7 @@ export function ListClients(){
 
 
   async function handleDelete(value: string){
-    await api.delete('/clients/'+value)
+    await api.delete('/clients/'+value);
   }
 
   useEffect( () => {
