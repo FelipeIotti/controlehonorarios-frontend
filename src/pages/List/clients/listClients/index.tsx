@@ -12,13 +12,14 @@ export function ListClients(){
 
   async function handleDelete(value: string){
     await api.delete('/clients/'+value);
+    await api.get('/clients').then(response => setClients(response.data));
   }
 
   useEffect( () => {
     api.get('/clients').then(response => setClients(response.data));
     // api.get('/company').then(response => setCompanys(response.data));
     // api.get('/units').then(response => setUnits(response.data));
-  },[handleDelete]); 
+  },[]); 
 
   return (
     <Flex direction='column'>

@@ -40,6 +40,10 @@ export function CreateLawyers(){
     groupAction.filter((groupAction)=>{
       if(groupAction.name===selectGroupAction){
         lawyersInput.specialty=groupAction.name;
+        return true;
+      }
+      else{
+        return false;
       }
     });
     

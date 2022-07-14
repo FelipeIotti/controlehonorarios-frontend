@@ -22,14 +22,15 @@ export function ListFees(){
   }
 
   async function handleDelete(value: string){
-    await api.delete('/fees/'+value)
+    await api.delete('/fees/'+value);
+    await api.get('/fees').then(response => setFees(response.data));
   }
 
   useEffect( () => {
     api.get('/fees').then(response => setFees(response.data));
     // api.get('/company').then(response => setCompanys(response.data));
     // api.get('/units').then(response => setUnits(response.data));
-  },[handleDelete]); 
+  },[]); 
 
   return (
     <Flex direction='column'>

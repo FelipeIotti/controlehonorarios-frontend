@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex,FormControl,Select,FormLabel} from "@chakra-ui/react"
+import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex} from "@chakra-ui/react"
 import { ILawyersDTO } from '../../../../dtos/ILawyersDTO';
 import api from "../../../../services/api";
 import {Link} from 'react-router-dom';
@@ -9,27 +9,18 @@ import { RiAddLine, RiCloseLine, RiPencilLine } from "react-icons/ri";
 export function ListLawyers(){
   const [lawyers,setLawyers] = useState<ILawyersDTO[]>([]);
 
-  function statusColor (value: string){
-    if(value === 'Concluído'){
-      return 'green';
-    }
-    else if(value === 'Andamento'){
-      return 'yellow';
-    }
-    else if(value === 'Parado'){
-      return 'red';
-    }
-  }
 
   async function handleDelete(value: string){
-    await api.delete('/lawyers/'+value)
+    await api.delete('/lawyers/'+value);
+    await api.get('/lawyers').then(response => setLawyers(response.data));
   }
 
+  
   useEffect( () => {
     api.get('/lawyers').then(response => setLawyers(response.data));
     // api.get('/company').then(response => setCompanys(response.data));
     // api.get('/units').then(response => setUnits(response.data));
-  },[handleDelete]); 
+  },[]); 
 
   return (
     <Flex direction='column'>

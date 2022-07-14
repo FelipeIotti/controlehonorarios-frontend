@@ -10,7 +10,6 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import api from "../../../../services/api";
 import { useEffect, useState } from "react";
-import { IClientsDTO} from '../../../../dtos/IClientsDTO';
 import { IGroupActionDTO } from '../../../../dtos/IGroupActionDTO';
 import { ILawyersDTO } from '../../../../dtos/ILawyersDTO';
 
@@ -46,6 +45,10 @@ export function UpdateLawyers(){
     groupAction.filter((groupAction)=>{
       if(groupAction.name===selectGroupAction){
         lawyersInput.specialty=groupAction.name;
+        return true;
+      }
+      else{
+        return false;
       }
     });  
 
