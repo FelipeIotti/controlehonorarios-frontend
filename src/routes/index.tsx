@@ -27,7 +27,7 @@ export function Routes() {
   return(
     <Switch>
       <Route path="/" exact component={AuthPage} />
-      {isAuthenticated===true &&
+      {isAuthenticated===true ?
       <>
         <Route path="/Home" exact component={Home} />
         <Route path="/General" exact component={General} />
@@ -47,6 +47,8 @@ export function Routes() {
         <Route path="/updateClients/:id" component={UpdateClients} /> 
         <Route path="/updateLawyers/:id" component={UpdateLawyers} />
       </>
+      : 
+      <Route path="/" exact component={AuthPage} />
     }
     </Switch>
   );
