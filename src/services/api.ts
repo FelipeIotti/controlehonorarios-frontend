@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://15.229.71.220',
+  baseURL: 'https://deploy.controlhonorarios.com',
 });
 
 export default api;
