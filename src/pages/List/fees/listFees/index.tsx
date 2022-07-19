@@ -97,7 +97,7 @@ export function ListFees(){
               </Tr>
 
               {fees.lawyers2 &&
-              <Tr>
+              <Tr key={fees.lawyers2}>
                 <Td  p='2' pl='2' >{fees.lawyers2}</Td>
                 <Td  p='2' pl='2' ></Td>
                 <Td  p='2' pl='2'></Td>
@@ -111,7 +111,7 @@ export function ListFees(){
               }
               
               {fees.lawyers3 &&
-              <Tr>
+              <Tr key={fees.lawyers3}>
                 <Td  p='2' pl='2' >{fees.lawyers3}</Td>
                 <Td  p='2' pl='2' ></Td>
                 <Td  p='2' pl='2'></Td>
@@ -126,7 +126,7 @@ export function ListFees(){
               }
               
               {fees.lawyers4 &&
-              <Tr>
+              <Tr key={fees.lawyers4}>
                 <Td  p='2' pl='2' >{fees.lawyers4}</Td>
                 <Td  p='2' pl='2' ></Td>
                 <Td  p='2' pl='2'></Td>

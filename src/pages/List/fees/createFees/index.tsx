@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack,FormControl,Select,Alert,
   AlertIcon,
   AlertTitle,
-  AlertDescription,CloseButton, FormLabel} from "@chakra-ui/react";
+  AlertDescription,CloseButton, FormLabel, Text} from "@chakra-ui/react";
 import {Input} from '../../../../components/Form/Input';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -17,7 +17,6 @@ import { IFeesDTO } from '../../../../dtos/IFeesDTO';
 
 const createFeesFormSchema = yup.object().shape({
   opposing_party: yup.string().required('Nome obrigatório'),
-  value1: yup.number().required('Valor obrigatória'),
   
   endDate: yup.string().required('Data obrigatória'),
   payment_date: yup.string().required('Data obrigatória'),
@@ -36,6 +35,13 @@ export function CreateFees(){
   const [selectLawyers4, setSelectLawyers4] = useState('');
   const [selectStatus, setSelectStatus] = useState('');
 
+  
+  const[inputValue, setInputValue] = useState('');
+  const[inputPercentage1, setInputPercentage1] = useState('');
+  const[inputPercentage2, setInputPercentage2] = useState('');
+  const[inputPercentage3, setInputPercentage3] = useState('');
+  const[inputPercentage4, setInputPercentage4] = useState('');
+
   //const [companyId, setCompanyId] =useState('');
   
   
@@ -47,6 +53,8 @@ export function CreateFees(){
     api.get('/groupAction').then(response => setGroupAction(response.data));
     api.get('/lawyers').then(response => setLawyers(response.data));
   },[]);
+
+ 
 
   async function createFees (feesInput:IFeesDTO){
     
@@ -112,7 +120,10 @@ export function CreateFees(){
 
     feesInput.status = selectStatus;
 
-
+    feesInput.value1= String((Number(inputPercentage1)/100)*Number(inputValue));
+    feesInput.value2= String((Number(inputPercentage2)/100)*Number(inputValue));
+    feesInput.value3= String((Number(inputPercentage3)/100)*Number(inputValue));
+    feesInput.value4= String((Number(inputPercentage4)/100)*Number(inputValue));
     try{
       await api.post('/fees',feesInput);
       history.push("/listFees");
@@ -152,7 +163,7 @@ export function CreateFees(){
           <Box>
             <Flex mb={"6"}>
             <Input  label='Parte contrária' error={errors.opposing_party} {...register("opposing_party")}/>
-    
+            <Input label="Valor da ação" type="number" onChange={event=>setInputValue(event.target.value)}/>
             </Flex>
             <Flex mb={"6"}>
               <FormControl mr='4'>
@@ -208,7 +219,26 @@ export function CreateFees(){
                 }
                 </Select>
               </FormControl>
-              <Input label="Valor" error={errors.value1} {...register("value1")}/>
+              {/* <Input label="Valor" error={errors.value1} {...register("value1")}> */}
+              <Flex width={"100%"}>
+                <Input label="%" type="number" min="1" max="100" onChange={event=>setInputPercentage1(event.target.value)}/>
+                <Box>
+                  <Text mb={'2'}> Valor </Text>
+                  <Flex
+                    focusBorderColor="pink.500"
+                    bgColor="gray.900"
+                    variant="filled"
+                    minWidth={'28'}
+                    minHeight={'12'}
+                    borderRadius={'10%'}
+                    alignItems= {"center"}
+                    justifyContent={'center'}
+                    mr={"4"}
+                  >
+                  <Text >R$ {((Number(inputPercentage1)/100)*Number(inputValue)).toLocaleString("pt-BR")}</Text>
+                  </Flex>
+                </Box>
+              </Flex>
             </Flex>
             <Flex mb={"8"}>
               <FormControl mr={'4'} >
@@ -222,7 +252,25 @@ export function CreateFees(){
                 }
                 </Select>
               </FormControl>
-              <Input   error={errors.value2} {...register("value2")}/>
+
+              <Flex width={"100%"}>
+                <Input  type="number" min="1" max="100" onChange={event=>setInputPercentage2(event.target.value)}/>
+                <Box>
+                  <Flex
+                    focusBorderColor="pink.500"
+                    bgColor="gray.900"
+                    variant="filled"
+                    minWidth={'28'}
+                    minHeight={'12'}
+                    borderRadius={'10%'}
+                    alignItems= {"center"}
+                    justifyContent={'center'}
+                    mr={"4"}
+                  >
+                  <Text >R$ {((Number(inputPercentage2)/100)*Number(inputValue)).toLocaleString("pt-BR")}</Text>
+                  </Flex>
+                </Box>
+              </Flex>
             </Flex>
             <Flex mb={"8"}>
               <FormControl mr={'4'} >
@@ -236,7 +284,25 @@ export function CreateFees(){
                 }
                 </Select>
               </FormControl>
-              <Input   error={errors.value3} {...register("value3")}/>
+              <Flex width={"100%"}>
+                <Input  type="number" min="1" max="100" onChange={event=>setInputPercentage3(event.target.value)}/>
+                <Box>
+                  
+                  <Flex
+                    focusBorderColor="pink.500"
+                    bgColor="gray.900"
+                    variant="filled"
+                    minWidth={'28'}
+                    minHeight={'12'}
+                    borderRadius={'10%'}
+                    alignItems= {"center"}
+                    justifyContent={'center'}
+                    mr={"4"}
+                  >
+                  <Text >R$ {((Number(inputPercentage3)/100)*Number(inputValue)).toLocaleString("pt-BR")}</Text>
+                  </Flex>
+                </Box>
+              </Flex>
             </Flex>
 
             <Flex mb={"8"}>
@@ -251,7 +317,26 @@ export function CreateFees(){
                 }
                 </Select>
               </FormControl>
-              <Input   error={errors.value4} {...register("value4")}/>
+
+              <Flex width={"100%"}>
+                <Input  type="number" min="1" max="100" onChange={event=>setInputPercentage4(event.target.value)}/>
+                <Box>
+                  
+                  <Flex
+                    focusBorderColor="pink.500"
+                    bgColor="gray.900"
+                    variant="filled"
+                    minWidth={'28'}
+                    minHeight={'12'}
+                    borderRadius={'10%'}
+                    alignItems= {"center"}
+                    justifyContent={'center'}
+                    mr={"4"}
+                  >
+                  <Text >R$ {((Number(inputPercentage4)/100)*Number(inputValue)).toLocaleString("pt-BR")}</Text>
+                  </Flex>
+                </Box>
+              </Flex>
             </Flex>
           </Box>  
           
