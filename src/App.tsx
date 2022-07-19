@@ -23,7 +23,7 @@ export const AuthUser = createContext({} as AuthUserProps);
 
 function App() {
   
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const userAuthenticate = {
     email: "financeiro@zagoadvogados.com.br",
     password: "Alexandra123"

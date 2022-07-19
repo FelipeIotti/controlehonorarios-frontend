@@ -181,7 +181,7 @@ export function General(){
 
   useEffect( () => {
     api.get('/lawyers/general').then(response => setGeneral(response.data));
-    api.get('/lawyers/generalQuantity').then(response => setGeneralQuantity(response.data));
+    api.get('/fees/generalQuantity').then(response => setGeneralQuantity(response.data));
     api.get('/lawyers').then(response=> setLawyers(response.data));
     api.get('/clients').then(response=> setClients(response.data));
     api.get('/fees').then(response=> setFees(response.data));

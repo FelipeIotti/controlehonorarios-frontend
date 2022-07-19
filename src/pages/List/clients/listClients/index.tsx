@@ -26,7 +26,7 @@ export function ListClients(){
       <Flex>
         <Link to='/createClients'>
           <Button as='a' size='sm' fontSize='sm' colorScheme='green'  rightIcon={<Icon as={RiAddLine} fontSize='16' />} maxWidth='200'mt='8' >
-            Adicionar Ativo
+            Adicionar Cliente
           </Button>
         </Link> 
       </Flex>  

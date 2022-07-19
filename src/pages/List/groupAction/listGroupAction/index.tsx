@@ -25,7 +25,7 @@ export function ListGroupAction(){
         
         <Link to='/createGroupAction'>
           <Button as='a' size='sm' fontSize='sm' colorScheme='green'  rightIcon={<Icon as={RiAddLine} fontSize='16' />} maxWidth='200'mt='8' >
-            Adicionar Ativo
+            Adicionar Grupo de Ação
           </Button>
         </Link> 
       </Flex>  

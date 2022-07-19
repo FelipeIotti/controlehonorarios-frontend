@@ -61,12 +61,13 @@ export function ListFees(){
           <Tbody>
             {
               fees.map(fees=>(
-                <Tr key={fees.id} fontSize='sm' >
-                  <Td  p='2' pl='2' >{fees.lawyers}</Td>
+              <>
+              <Tr key={fees.id} fontSize='sm' >
+                  <Td  p='2' pl='2' >{fees.lawyers1}</Td>
                   <Td  p='2' pl='2' >{fees.clients}</Td>
                   <Td  p='2' pl='2'>{fees.group_action}</Td>
                   <Td p='2' pl='2'>{fees.opposing_party}</Td>
-                  <Td p='2' pl='2'>R$ {Number(fees.value).toLocaleString("pt-BR")}</Td>
+                  <Td p='2' pl='2'>R$ {Number(fees.value1).toLocaleString("pt-BR")}</Td>
                   <Td p='2' pl='2' textAlign='center'>
                     <Button as='a' size='sm' fontSize='sm' colorScheme={statusColor(fees.status)} >
                       {fees.status}
@@ -94,6 +95,51 @@ export function ListFees(){
                     />
                   </Td>
               </Tr>
+
+              {fees.lawyers2 &&
+              <Tr>
+                <Td  p='2' pl='2' >{fees.lawyers2}</Td>
+                <Td  p='2' pl='2' ></Td>
+                <Td  p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'>R$ {Number(fees.value2).toLocaleString("pt-BR")}</Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                
+              </Tr>
+              }
+              
+              {fees.lawyers3 &&
+              <Tr>
+                <Td  p='2' pl='2' >{fees.lawyers3}</Td>
+                <Td  p='2' pl='2' ></Td>
+                <Td  p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'>R$ {Number(fees.value3).toLocaleString("pt-BR")}</Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                
+              </Tr>
+              
+              }
+              
+              {fees.lawyers4 &&
+              <Tr>
+                <Td  p='2' pl='2' >{fees.lawyers4}</Td>
+                <Td  p='2' pl='2' ></Td>
+                <Td  p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'>R$ {Number(fees.value4).toLocaleString("pt-BR")}</Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                <Td p='2' pl='2'></Td>
+                
+              </Tr>
+              }
+              
+              </>
               ))
           
             }

@@ -40,8 +40,12 @@ interface GeneralPropsTotal {
 
 export function IndividualGeneral(){
   const [general, setGeneral] = useState<GeneralProps[]>([]);
+
   const [generalQuantity, setGeneralQuantity] = useState<GeneralProps[]>([]);
   const [generalStatus, setGeneralStatus] = useState<GeneralProps[]>([]);
+
+  const [generalQuantityFees, setGeneralQuantityFees] = useState<GeneralProps[]>([]);
+  const [generalStatusFees, setGeneralStatusFees] = useState<GeneralProps[]>([]);
 
   const [selectedGeneral, setSelectedGeneral] = useState<GeneralProps>({} as GeneralProps);
   const [selectedGeneralQuantity, setSelectedGeneralQuantity] = useState<GeneralProps>({} as GeneralProps);
@@ -85,10 +89,10 @@ export function IndividualGeneral(){
 
     setSelectedGeneralStatus(selectGeneralStatus);
     
-    const generalQuantityTotal = CalculateTotalQuantity(generalQuantity);
+    const generalQuantityTotal = CalculateTotalQuantity(generalQuantityFees);
     setSelectedGeneralQuantityTotal(generalQuantityTotal);
 
-    const generalStatusTotal = CalculateTotalQuantity(generalStatus);
+    const generalStatusTotal = CalculateTotalQuantity(generalStatusFees);
     setSelectedGeneralStatusTotal(generalStatusTotal);
 
     const generalFeesTotal = CalculateTotalQuantity(general);
@@ -110,7 +114,7 @@ export function IndividualGeneral(){
     const novemberT = object.reduce((total, object) => total + object.november, 0);
     const decemberT = object.reduce((total, object) => total + object.december, 0);
     const totalT = object.reduce((total, object) => total + object.total, 0);
-
+    
     const generalTotal = {
       january: januaryT.toLocaleString('pt-BR'),
       february: februaryT.toLocaleString('pt-BR'),
@@ -133,8 +137,10 @@ export function IndividualGeneral(){
 
   useEffect( () => {
     api.get('/lawyers/general').then(response => setGeneral(response.data));
-    api.get('/lawyers/generalQuantity').then(response => setGeneralQuantity(response.data))
-    api.get('/lawyers/generalStatus').then(response => setGeneralStatus(response.data))
+    api.get('/lawyers/generalQuantity').then(response => setGeneralQuantity(response.data));
+    api.get('/fees/generalQuantity').then(response => setGeneralQuantityFees(response.data));
+    api.get('/lawyers/generalStatus').then(response => setGeneralStatus(response.data));
+    api.get('/fees/generalStatus').then(response => setGeneralStatusFees(response.data));
   },[]); 
 
   return (
@@ -287,7 +293,7 @@ export function IndividualGeneral(){
               </Tr>
               
                 <Tr fontSize='sm' >
-                <Td p='2' pl='2' >Honários</Td>
+                <Td p='2' pl='2' >Honorários</Td>
                 <Td p='2' pl='2' textAlign='center' > {selectedGeneralTotal.january}</Td>
                 <Td p='2' pl='2' textAlign='center' > {selectedGeneralTotal.february}</Td>
                 <Td p='2' pl='2' textAlign='center' > {selectedGeneralTotal.march}</Td>
