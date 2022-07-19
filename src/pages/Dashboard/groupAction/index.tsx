@@ -53,6 +53,7 @@ export function GroupActionGeneral(){
             </Tr>
           </Thead>
           <Tbody>{
+            general &&
             general.map(general=>(
               <Tr key={general.data.id} fontSize='sm' >
                 <Td p='2' pl='2' >{general.data.name}</Td>
