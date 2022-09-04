@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 import Chart from "react-apexcharts"
-import api from '../../../services/api';
+import { api } from '../../../services/apiClient';
 import { IGroupActionDTO } from '../../../dtos/IGroupActionDTO';
 import { ILawyersDTO } from '../../../dtos/ILawyersDTO';
 import { IClientsDTO } from '../../../dtos/IClientsDTO';
@@ -189,7 +189,7 @@ export function General(){
   
   return (
     <Flex direction='row' >
-      <Box spacing={4}>
+      <Box >
         <Text>Advogados</Text>
         <Box w='150px' h='95px' bg='gray.800' borderRadius='lg' mb='5' >
           <Flex justify='center' align='center' width='100%' height='100%' fontSize='2xl' >

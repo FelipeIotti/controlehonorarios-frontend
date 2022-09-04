@@ -5,10 +5,11 @@ import { Link} from 'react-router-dom';
 
 import { RiAuctionFill, RiAuctionLine, RiDashboardFill, RiDashboardLine,  RiUser2Fill, RiUser2Line, RiUserSearchFill} from "react-icons/ri";
 import { useContext } from "react";
-import { AuthUser } from "../../App";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export function SideBarNavi() {
-  const {isAuthenticated} = useContext(AuthUser);
+  const {isAuthenticated} = useContext(AuthContext);
+  
   return(
     <Stack spacing='12' align='flex-start'>
       {isAuthenticated?

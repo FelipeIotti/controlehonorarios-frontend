@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Switch } from 'react-router-dom';
-import { AuthUser } from '../App';
+//import { AuthUser } from '../App';
+import { AuthContext } from '../contexts/AuthContext';
 import { Home } from '../pages';
 import { AuthPage } from '../pages/Auth';
 import { General } from '../pages/Dashboard/general';
@@ -22,11 +23,13 @@ import { UpdateLawyers } from '../pages/List/lawyers/updateLawyers';
 import {Route} from './Route';
 
 export function Routes() {
-  const { isAuthenticated} = useContext(AuthUser);
+  //const { isAuthenticated} = useContext(AuthUser);
+  const { isAuthenticated} = useContext(AuthContext);
+  
 
   return(
     <Switch>
-      <Route path="/" exact component={AuthPage} />
+      {/* <Route path="/" exact component={AuthPage} /> */}
       {isAuthenticated===true ?
       <>
         <Route path="/Home" exact component={Home} />

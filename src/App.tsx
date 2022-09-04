@@ -7,7 +7,8 @@ import {theme} from './styles/theme';
 import { SideBarDrawerProvider } from './contexts/SidebarDrawerContext';
 
 import { Home } from './pages';
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
 
 interface loginProps {
   email: string;
@@ -23,22 +24,24 @@ export const AuthUser = createContext({} as AuthUserProps);
 
 function App() {
   
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const userAuthenticate = {
-    email: "financeiro@zagoadvogados.com.br",
-    password: "Alexandra123"
-  }
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const userAuthenticate = {
+  //   email: "financeiro@zagoadvogados.com.br",
+  //   password: "Alexandra123"
+  // }
   return (
     <ChakraProvider theme={theme} >
       <SideBarDrawerProvider>
 
-      <AuthUser.Provider value={{isAuthenticated, userAuthenticate,setIsAuthenticated}} >
+      {/* <AuthUser.Provider value={{isAuthenticated, userAuthenticate,setIsAuthenticated}} > */}
+      <AuthProvider>
         <Router>
           {/* <AuthPage/> */}
             <Home/>
           
         </Router>
-        </AuthUser.Provider> 
+      </AuthProvider>
+        {/* </AuthUser.Provider>  */}
       </SideBarDrawerProvider>
     </ChakraProvider>
   );

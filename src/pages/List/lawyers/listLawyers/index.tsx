@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex} from "@chakra-ui/react"
 import { ILawyersDTO } from '../../../../dtos/ILawyersDTO';
-import api from "../../../../services/api";
+import { api } from '../../../../services/apiClient';
 import {Link} from 'react-router-dom';
 import { RiAddLine, RiCloseLine, RiPencilLine } from "react-icons/ri";
 
@@ -77,7 +77,7 @@ export function ListLawyers(){
                 // .filter(unit=>unit.company_id===(companys.filter(company=>company.name===selectCompany))[0].id)
                 // .filter(unit=>unit.units_id===(units.filter(company=>company.name===selectUnit))[0].id)
 
-                lawyers.map(lawyers=>(
+                lawyers.sort(function(x,y){let a = x.name.toUpperCase(), b = y.name.toUpperCase(); return a===b ? 0: a>b?1:-1;}).map(lawyers=>(
                   <Tr key={lawyers.id} fontSize='sm' >
                     <Td  p='2' pl='2' >{lawyers.name}</Td>
                     <Td  p='2' pl='2' >{lawyers.oab}</Td>

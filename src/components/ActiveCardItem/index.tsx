@@ -113,8 +113,8 @@ export function ActiveCardItem({description, name,health_level,image,model,respo
     </Flex>
       <Flex justify="space-between">
         <Chart options={options} series={[health_level,100-health_level]} type='donut' width='160'/>
-        <Flex direction='column' maxWidth='150' hight= '150'justify='space-between' align='flex-start'>
-          <Text fontSize='md'  minWidth='150' minHight= '100'>{description}</Text>
+        <Flex direction='column' maxWidth='150' height= '150'justify='space-between' align='flex-start'>
+          <Text fontSize='md'  minWidth='150' minHeight= '100'>{description}</Text>
           <Button as='a' size='sm' fontSize='sm'  colorScheme='purple' minWidth='150'>
             {model}
           </Button> 

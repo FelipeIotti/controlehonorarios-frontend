@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Table,Text,Thead,Tbody,Tr,Th,Td,Box,Flex,FormControl,Select} from "@chakra-ui/react"
 import { IGroupActionDTO } from '../../../dtos/IGroupActionDTO';
-import api from "../../../services/api";
+import { api } from '../../../services/apiClient';
 
 interface GeneralProps {
   data: IGroupActionDTO;

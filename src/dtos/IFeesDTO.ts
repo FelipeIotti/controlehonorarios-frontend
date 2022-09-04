@@ -17,6 +17,8 @@ export interface IFeesDTO {
   value3: string;
   value4: string;
 
+  totalValue?: string;
+
   status: string;
 
   endDate: Date;

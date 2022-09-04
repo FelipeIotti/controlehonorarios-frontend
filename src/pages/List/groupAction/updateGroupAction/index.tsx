@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack,Alert,
   AlertIcon,
   AlertTitle,
@@ -8,7 +8,7 @@ import {useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Link, useHistory, useParams} from 'react-router-dom';
-import api from "../../../../services/api";
+import { api } from '../../../../services/apiClient';
 import { useState } from "react";
 import { IGroupActionDTO} from '../../../../dtos/IGroupActionDTO';
 
@@ -22,8 +22,13 @@ export interface GroupActionId {
 
 export function UpdateGroupAction(){
   const [error,setError] = useState<any>();
+  const [groupAction, setGroupAction] = useState<IGroupActionDTO>({} as IGroupActionDTO);
   const history = useHistory();
   const groupActionId = useParams<GroupActionId>();
+
+  useEffect( () => {
+    api.get('/groupAction').then((response) => {setGroupAction(response.data.find((f:IGroupActionDTO) => f.id === groupActionId.id));})
+  },[groupActionId])
   
   async function createGroupAction (groupActionInput:IGroupActionDTO){
    try{
@@ -40,7 +45,7 @@ export function UpdateGroupAction(){
   return(
     <Box as='form' flex='1' borderRadius={8} bg='gray.800' p={['6','8']} onSubmit={handleSubmit(createGroupAction)} >
 
-      <Heading size='lg' fontWeight='normal'>Criar Grupo de Ações</Heading>
+      <Heading size='lg' fontWeight='normal'>Editar Grupo de Ações</Heading>
 
       { error &&(
         <Alert status="error" variant='solid' borderRadius='md' mt='4' >
@@ -55,7 +60,7 @@ export function UpdateGroupAction(){
 
       <VStack spacing='8' >
         <SimpleGrid minChildWidth='240px' spacing={['6','8']} w='100%' >
-          <Input  label='Nome completo' error={errors.name} {...register("name")}/>
+          <Input  label='Nome completo' defaultValue={groupAction.name} error={errors.name} {...register("name")}/>
         </SimpleGrid>
       </VStack>
       <Flex mt='8' justify='flex-end' >

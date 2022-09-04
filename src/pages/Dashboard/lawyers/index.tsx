@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Flex, FormControl, Select, Text } from '@chakra-ui/react';
 
 import Chart from "react-apexcharts"
-import api from '../../../services/api';
+import { api } from '../../../services/apiClient';
 import { IGroupActionDTO } from '../../../dtos/IGroupActionDTO';
 
 
@@ -215,7 +215,7 @@ export function Lawyers(){
   },[]); 
   return (
     <Flex direction='row' >
-      <Box spacing={4} mr='5' >
+      <Box mr='5' >
         <Text>Advogado</Text>
         <FormControl mr='5' w='100%' h='115px'>
           <Select placeholder="Advogado" onChange={event=>handleSelect1(event.target.value)} >
@@ -248,7 +248,7 @@ export function Lawyers(){
           </Flex>
         </Box>
       </Box>
-      <Box spacing={4}>
+      <Box >
         <Text>Advogado</Text>
         <FormControl mr='5' w='100%' h='115px'>
           <Select placeholder="Advogado" onChange={event=>handleSelect2(event.target.value)} >

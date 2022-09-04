@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex} from "@chakra-ui/react"
 import { IGroupActionDTO } from '../../../../dtos/IGroupActionDTO';
-import api from "../../../../services/api";
+import { api } from '../../../../services/apiClient';
 import {Link} from 'react-router-dom';
 import { RiAddLine, RiCloseLine, RiPencilLine } from "react-icons/ri";
 
@@ -39,7 +39,7 @@ export function ListGroupAction(){
             </Tr>
           </Thead>
           <Tbody>
-            {groupAction.map(groupAction=>(
+            {groupAction.sort(function(x,y){let a = x.name.toUpperCase(), b = y.name.toUpperCase(); return a===b ? 0: a>b?1:-1;}).map(groupAction=>(
               <Tr key={groupAction.id} fontSize='sm' >
                 <Td  p='2' pl='2' >{groupAction.name}</Td>
                 <Td p='2' pl='2'textAlign='center'>

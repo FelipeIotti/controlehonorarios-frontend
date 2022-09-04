@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { Table,Thead,Tbody,Tr,Th,Td,Icon,Button,Box,Flex,} from "@chakra-ui/react"
 import { IFeesDTO } from '../../../../dtos/IFeesDTO';
-import api from "../../../../services/api";
 import {Link} from 'react-router-dom';
 import { RiAddLine, RiCloseLine, RiPencilLine } from "react-icons/ri";
+import { api } from '../../../../services/apiClient';
 
 export function ListFees(){
   const [fees,setFees] = useState<IFeesDTO[]>([]);
@@ -140,7 +140,7 @@ export function ListFees(){
               }
               
               </>
-              ))
+              )).reverse()
           
             }
           </Tbody>

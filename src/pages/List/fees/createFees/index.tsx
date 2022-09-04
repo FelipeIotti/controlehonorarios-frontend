@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Link, useHistory} from 'react-router-dom';
-import api from "../../../../services/api";
+import { api } from '../../../../services/apiClient';
 import { useEffect, useState } from "react";
 import { IClientsDTO} from '../../../../dtos/IClientsDTO';
 import { IGroupActionDTO } from '../../../../dtos/IGroupActionDTO';
@@ -124,9 +124,12 @@ export function CreateFees(){
     feesInput.value2= String((Number(inputPercentage2)/100)*Number(inputValue));
     feesInput.value3= String((Number(inputPercentage3)/100)*Number(inputValue));
     feesInput.value4= String((Number(inputPercentage4)/100)*Number(inputValue));
+    feesInput.totalValue = String(inputValue);
+    
     try{
       await api.post('/fees',feesInput);
       history.push("/listFees");
+      
     }
     catch(err){
       setError(err);
@@ -225,9 +228,7 @@ export function CreateFees(){
                 <Box>
                   <Text mb={'2'}> Valor </Text>
                   <Flex
-                    focusBorderColor="pink.500"
                     bgColor="gray.900"
-                    variant="filled"
                     minWidth={'28'}
                     minHeight={'12'}
                     borderRadius={'10%'}
@@ -257,9 +258,7 @@ export function CreateFees(){
                 <Input  type="number" min="1" max="100" onChange={event=>setInputPercentage2(event.target.value)}/>
                 <Box>
                   <Flex
-                    focusBorderColor="pink.500"
                     bgColor="gray.900"
-                    variant="filled"
                     minWidth={'28'}
                     minHeight={'12'}
                     borderRadius={'10%'}
@@ -289,9 +288,7 @@ export function CreateFees(){
                 <Box>
                   
                   <Flex
-                    focusBorderColor="pink.500"
                     bgColor="gray.900"
-                    variant="filled"
                     minWidth={'28'}
                     minHeight={'12'}
                     borderRadius={'10%'}
@@ -323,9 +320,7 @@ export function CreateFees(){
                 <Box>
                   
                   <Flex
-                    focusBorderColor="pink.500"
                     bgColor="gray.900"
-                    variant="filled"
                     minWidth={'28'}
                     minHeight={'12'}
                     borderRadius={'10%'}

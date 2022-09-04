@@ -8,7 +8,7 @@ import {useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Link, useHistory} from 'react-router-dom';
-import api from "../../../../services/api";
+import { api } from '../../../../services/apiClient';
 import { useState } from "react";
 import { IClientsDTO} from '../../../../dtos/IClientsDTO';
 

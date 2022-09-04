@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack,Alert,
   AlertIcon,
   AlertTitle,
@@ -8,7 +8,7 @@ import {useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Link, useHistory, useParams} from 'react-router-dom';
-import api from "../../../../services/api";
+import { api } from '../../../../services/apiClient';
 import { useState } from "react";
 import { IClientsDTO} from '../../../../dtos/IClientsDTO';
 
@@ -23,11 +23,16 @@ interface GroupActionId {
 export function UpdateClients(){
   const [error,setError] = useState<any>();
   const history = useHistory();
-  const groupActionId = useParams<GroupActionId>();
-  
+  const clientsId = useParams<GroupActionId>();
+  const [clients, setClients] = useState<IClientsDTO>({} as IClientsDTO);
+
+  useEffect( () => {
+    api.get('/clients').then((response) => {setClients(response.data.find((f:IClientsDTO) => f.id === clientsId.id));})
+  },[clientsId])
+   
   async function createClients (clientsInput:IClientsDTO){
    try{
-    await api.put('/clients/'+groupActionId.id,clientsInput);
+    await api.put('/clients/'+clientsId.id,clientsInput);
     history.push('/listClients');
    }
    catch(err){
@@ -55,7 +60,7 @@ export function UpdateClients(){
 
       <VStack spacing='8' >
         <SimpleGrid minChildWidth='240px' spacing={['6','8']} w='100%' >
-          <Input  label='Nome completo' error={errors.name} {...register("name")}/>
+          <Input  label='Nome completo' defaultValue={clients.name} error={errors.name} {...register("name")}/>
         </SimpleGrid>
       </VStack>
       <Flex mt='8' justify='flex-end' >
