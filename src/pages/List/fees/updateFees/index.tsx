@@ -88,7 +88,7 @@ export function UpdateFees(){
     setInputPercentage3(String((Number(fees.value3)/Number(fees.totalValue))*100));
     setInputPercentage4(String((Number(fees.value4)/Number(fees.totalValue))*100));
   
-  },[id, fees.value1]);
+  },[id, fees.value1,fees.value2,fees.value3,fees.value4,fees.totalValue]);
 
 
 
